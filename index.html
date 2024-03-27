@@ -4,42 +4,27 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
-
 </head>
 <body>
-<audio controls id="audio"></audio>
-
+<video controls id="audio"></video>
 <script>
     if (Hls.isSupported()) {
         var audio = document.getElementById('audio');
-
-        // If you are using the ESM version of the library (hls.mjs), you
-        // should specify the "workerPath" config option here if you want
-        // web workers to be used. Note that bundlers (such as webpack)
-        // will likely use the ESM version by default.
         var hls = new Hls();
-
-        // MEDIA_ATTACHED event is fired by hls object once MediaSource is ready
         hls.on(Hls.Events.MEDIA_ATTACHED, function () {
             console.log('audio and hls.js are now bound together !');
-
         });
-
         hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
             console.log(
                 'manifest loaded, found ' + data.levels.length + ' quality level',
             );
         });
+        // hls.loadSource('http://localhost:63343/stream/master.m3u8');
+        hls.loadSource('https://jackal.link/p/radiant/launch/stream/master.m3u8');
 
-
-        hls.loadSource('https://jackal.link/p/radiant/launch/bfa390ee5173d7a718aeda388da0182787bd9e3ef7e90a4840f92a46887900a8/master.m3u8');
-        // bind them together
+        // hls.loadSource('https://jackal.link/p/radiant/launch/bfa390ee5173d7a718aeda388da0182787bd9e3ef7e90a4840f92a46887900a8/master.m3u8');
         hls.attachMedia(audio);
-
-
     }
 </script>
-
-
 </body>
 </html>
