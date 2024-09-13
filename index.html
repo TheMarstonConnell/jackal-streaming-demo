@@ -6,14 +6,19 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 </head>
 <body>
-<input type="text" id="videoLink" placeholder="Enter video IPFS hash" value="bafybeibwvoe6smjdrzikikvt5elzirsyp6p5i5u44e4mfp22yeu7p5dq6q" style="max-width: 800px; width: 100%;"/>
-<video controls id="audio" style="max-width: 800px;"></video>
+<div style="display: flex; flex-direction: column">
+    <input type="text" id="videoLink" placeholder="Enter video IPFS hash" value="bafybeibwvoe6smjdrzikikvt5elzirsyp6p5i5u44e4mfp22yeu7p5dq6q" style="max-width: 800px; width: 100%; margin-bottom: 20px"/>
+    <video controls id="audio" style="max-width: 800px;"></video>
+</div>
+
 <script>
 
     function updateVideo(hls){
         const videoLink = document.getElementById('videoLink');
         const newLink = videoLink.value;
-        hls.loadSource(`https://ipfs-gw.stargaze-apis.com/ipfs/${newLink}/output.m3u8`);
+        // hls.loadSource(`https://ipfs-gw.stargaze-apis.com/ipfs/${newLink}/output.m3u8`);
+        hls.loadSource(`https://ipfs.io/ipfs/${newLink}/output.m3u8`);
+
     }
 
     if (Hls.isSupported()) {
